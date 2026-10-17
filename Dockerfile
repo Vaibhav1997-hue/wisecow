@@ -1,8 +1,11 @@
-FROM alpine:latest
+FROM ubuntu:22.04
 
-RUN echo "https://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories \
-    && apk update \
-    && apk add --no-cache bash netcat-openbsd fortune cowsay
+RUN apt-get update && apt-get install -y \
+    bash \
+    netcat-openbsd \
+    fortune-mod \
+    cowsay \
+    && rm -rf /var/lib/apt/lists/*
 
 ENV PATH="${PATH}:/usr/games"
 
